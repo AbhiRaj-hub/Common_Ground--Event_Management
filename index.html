@@ -1,40 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Common Ground Events</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Common Ground Events | Good events. Good people. Common ground.</title>
+  <meta name="description" content="Hackathons, robotics, music, debate and more. Browse the fest's upcoming events, search by category and save your seat in under a minute." />
+  <meta name="theme-color" content="#2E4A37" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232E4A37'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-style='italic' text-anchor='middle' fill='%23F2EDE2'%3EG%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      try {
+        var saved = localStorage.getItem("cg.theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        root.dataset.theme = saved || (prefersDark ? "dark" : "light");
+      } catch (e) { root.dataset.theme = "light"; }
+    })();
+  </script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-inner">
-            <h1 class="logo">Common Ground Events</h1>
+  <a class="skip-link" href="#events">Skip to events</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="#top" aria-label="Common Ground, back to top">
+        Common <em>Ground.</em>
+      </a>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#featured"><sup>01</sup>Featured</a>
+        <a href="#events"><sup>02</sup>Events</a>
+        <a href="#how-it-works"><sup>03</sup>How it works</a>
+        <a href="#register"><sup>04</sup>Register</a>
+        <a href="#my-registrations"><sup>05</sup>My seats <span id="reg-count" class="pill" hidden>0</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary btn-sm header-cta" href="#register">Save a seat</a>
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="currentColor"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+        </button>
+        <button id="menu-toggle" class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Good events. Good people. <em>Common ground.</em></h1>
+          <p class="hero-lead">Hackathons, robot battles, bands, debates and more. Find the events that fit you, then save your seat in under a minute.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#events">Find an event</a>
+            <a class="btn btn-ghost" href="#how-it-works">How it works</a>
+          </div>
         </div>
-    </header>
 
-    <main class="container">
-        <section class="hero">
-            <h2>Campus Fest 2026</h2>
-            <p>Discover and register for upcoming technical, cultural, and literary events.</p>
-        </section>
+        <div class="hero-visual">
+          <figure class="hero-media">
+            <img src="https://images.hostinger.com/4d8da728-89ff-4713-956f-98aee392fe0e/6f989141-bb19-483c-a034-3f88385d52f0.png" alt="Sunlight falling across oak desks and leafy plants at Common Ground" width="800" height="1000" onerror="this.remove()" />
+            <figcaption>Grow here.<br />Together.</figcaption>
+          </figure>
+          <aside id="hero-next" class="next-card" aria-label="Next event"></aside>
+        </div>
+      </div>
+    </section>
 
-        <section class="controls">
-            <input type="text" id="search-input" class="search-input" placeholder="Search events or venues...">
-            <div id="category-filters" class="filter-group">
-                <button class="filter-btn active" data-category="All">All</button>
-                <button class="filter-btn" data-category="Technical">Technical</button>
-                <button class="filter-btn" data-category="Cultural">Cultural</button>
-                <button class="filter-btn" data-category="Literary">Literary</button>
-                <button class="filter-btn" data-category="Business">Business</button>
-                <button class="filter-btn" data-category="Creative">Creative</button>
+    <section id="featured" class="section" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">01 / Featured this month</p>
+          <h2 id="featured-title">Worth <em>showing up</em> for.</h2>
+          <p>Hand-picked by the organising team. Don't miss these.</p>
+        </div>
+        <div id="featured-grid" class="featured-grid reveal"></div>
+      </div>
+    </section>
+
+    <section id="events" class="section section-tint" aria-labelledby="events-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">02 / The calendar</p>
+          <h2 id="events-title">Every <em>upcoming</em> event.</h2>
+          <p>Search by name, host or venue, or filter by category.</p>
+        </div>
+
+        <div class="toolbar">
+          <div class="search">
+            <label for="search" class="visually-hidden">Search events</label>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="search" type="search" placeholder="Search events, hosts or venues" autocomplete="off" />
+          </div>
+          <div id="chips" class="chips" role="group" aria-label="Filter by category"></div>
+        </div>
+
+        <p id="result-count" class="result-count" role="status" aria-live="polite"></p>
+        <div id="events-grid" class="events-grid"></div>
+      </div>
+    </section>
+
+    <section class="quote-band" aria-label="Our promise">
+      <img src="https://images.hostinger.com/4d8da728-89ff-4713-956f-98aee392fe0e/e352400f-a790-40f1-a6d8-b0c6ae7a005d.png" alt="" loading="lazy" onerror="this.remove()" />
+      <div class="container quote-inner reveal">
+        <p class="quote">Compete. Create.<br />Connect.</p>
+        <p class="quote-sub">That's our common ground.</p>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">03 / Three simple steps</p>
+          <h2 id="how-title">How it <em>works.</em></h2>
+          <p>From browsing to the stage in a few minutes.</p>
+        </div>
+        <ol class="rhythm reveal">
+          <li>
+            <div class="rhythm-day"><b>1</b><span>Pick</span></div>
+            <h3>Choose your events</h3>
+            <p>Browse the calendar, search by name or filter by category. Every event lists its venue, price and agenda.</p>
+          </li>
+          <li>
+            <div class="rhythm-day"><b>2</b><span>Register</span></div>
+            <h3>Save your seat</h3>
+            <p>Four fields, checked as you type. You get a reference ID straight away and can add the event to your calendar.</p>
+          </li>
+          <li>
+            <div class="rhythm-day"><b>3</b><span>Show up</span></div>
+            <h3>Compete and connect</h3>
+            <p>Arrive early, bring your team and enjoy the day. Changed your mind? Cancel from My seats to free your spot.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="register" class="section section-tint" aria-labelledby="register-title">
+      <div class="container register-grid">
+        <div class="register-panel">
+          <div class="section-head left reveal">
+            <p class="eyebrow">04 / Save your seat</p>
+            <h2 id="register-title">Register for <em>an event.</em></h2>
+            <p>Four fields, all required. Just a conversation, no pressure.</p>
+          </div>
+
+          <form id="reg-form" novalidate>
+            <div class="field">
+              <label for="f-name">Full name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" aria-describedby="e-name" />
+              <p id="e-name" class="error" aria-live="polite"></p>
             </div>
-        </section>
+            <div class="field">
+              <label for="f-email">Email address</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="e-email" />
+              <p id="e-email" class="error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone number</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210" aria-describedby="e-phone" />
+              <p id="e-phone" class="error" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-event">Event</label>
+              <select id="f-event" name="event" aria-describedby="e-event"></select>
+              <p id="e-event" class="error" aria-live="polite"></p>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Save my seat</button>
+          </form>
 
-        <section id="events-grid" class="events-grid"></section>
-    </main>
+          <div id="confirmation" class="confirmation" tabindex="-1" hidden></div>
+        </div>
 
-    <script src="js/events.js"></script>
-    <script src="js/app.js"></script>
+        <aside id="reg-summary" class="reg-summary" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="my-registrations" class="section" aria-labelledby="mine-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">05 / Your calendar</p>
+          <h2 id="mine-title">My <em>seats.</em></h2>
+          <p>Saved in this browser, so they will be here when you come back.</p>
+        </div>
+        <div id="mine-list" class="mine-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="wordmark">Common <em>Ground.</em></p>
+      <p>© 2026 Common Ground Events. A student project; event details are sample content.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div id="detail-body"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/events.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
