@@ -6,8 +6,8 @@ Built with **HTML5, CSS3 and vanilla JavaScript**.
 
 | | |
 |---|---|
-| **Live site** | `https://AbhiRaj-hub.github.io/Common_Ground--Event_Manegement/` |
-| **Repository** | `https://github.com/AbhiRaj-hub/Common_Ground--Event_Manegement`|
+| **Live site** | `https://AbhiRaj-hub.github.io/Common_Ground--Event_Management/` |
+| **Repository** | `https://github.com/AbhiRaj-hub/Common_Ground--Event_Management`|
 
 ---
 
